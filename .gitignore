@@ -51,7 +51,8 @@ logs/
 *.log
 
 # ─── AI models (large files) ──────────────────────────────────
-models/
+/models/
+*.gguf
 voice/*.bin
 voice/*.onnx
 voice/*.tflite
