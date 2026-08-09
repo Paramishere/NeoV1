@@ -1,0 +1,231 @@
+/* ============================================================
+   NEO Design System — Global Styles
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --neo-bg: #020810;
+    --neo-cyan: #00d4ff;
+    --neo-purple: #7c3aed;
+    --neo-blue: #2563eb;
+    --neo-text: #e2e8f0;
+    --neo-border: rgba(0, 212, 255, 0.12);
+    --scrollbar-track: #040d1a;
+    --scrollbar-thumb: rgba(0, 212, 255, 0.2);
+    --scrollbar-thumb-hover: rgba(0, 212, 255, 0.4);
+  }
+
+  html, body, #root {
+    @apply m-0 p-0 w-full h-full overflow-hidden;
+    background: var(--neo-bg);
+    color: var(--neo-text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+
+  /* Remove outline, use custom focus */
+  *:focus {
+    outline: none;
+  }
+  *:focus-visible {
+    outline: 2px solid rgba(0, 212, 255, 0.5);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(0, 212, 255, 0.25);
+    color: #e2e8f0;
+  }
+}
+
+/* ─── Components ──────────────────────────────────────────── */
+@layer components {
+  /* Glass panel */
+  .neo-panel {
+    @apply rounded-neo-lg border;
+    background: rgba(4, 20, 40, 0.7);
+    border-color: rgba(0, 212, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 1px rgba(0, 212, 255, 0.08);
+  }
+
+  /* Glassmorphism card */
+  .neo-glass {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 212, 255, 0.04) 0%,
+      rgba(124, 58, 237, 0.04) 100%
+    );
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 12px;
+  }
+
+  /* Neon button */
+  .neo-btn {
+    @apply px-4 py-2 rounded-neo font-medium text-sm transition-all duration-200;
+    @apply border border-neo-border hover:border-neo-cyan;
+    background: rgba(0, 212, 255, 0.06);
+    color: #00d4ff;
+  }
+  .neo-btn:hover {
+    background: rgba(0, 212, 255, 0.12);
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.2);
+  }
+  .neo-btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Primary button */
+  .neo-btn-primary {
+    @apply px-4 py-2 rounded-neo font-medium text-sm transition-all duration-200;
+    background: linear-gradient(135deg, #00d4ff 0%, #2563eb 100%);
+    color: #020810;
+    font-weight: 600;
+  }
+  .neo-btn-primary:hover {
+    filter: brightness(1.15);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+  .neo-btn-primary:active {
+    transform: scale(0.97);
+  }
+
+  /* Input field */
+  .neo-input {
+    @apply w-full px-4 py-3 rounded-neo text-sm;
+    background: rgba(4, 20, 40, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    color: #e2e8f0;
+    transition: all 0.2s ease;
+  }
+  .neo-input::placeholder {
+    color: #334155;
+  }
+  .neo-input:focus {
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.1), 0 0 16px rgba(0, 212, 255, 0.05);
+  }
+
+  /* Status badge */
+  .neo-badge-online {
+    @apply inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+  .neo-badge-offline {
+    @apply inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full;
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+  .neo-badge-warning {
+    @apply inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full;
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  /* Sidebar nav item */
+  .neo-nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-neo text-sm font-medium;
+    @apply text-neo-text-dim hover:text-neo-cyan transition-all duration-200 cursor-pointer;
+  }
+  .neo-nav-item:hover {
+    background: rgba(0, 212, 255, 0.06);
+  }
+  .neo-nav-item.active {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+  }
+
+  /* Text gradient */
+  .neo-text-gradient {
+    background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Divider */
+  .neo-divider {
+    border: none;
+    border-top: 1px solid rgba(0, 212, 255, 0.08);
+  }
+}
+
+/* ─── Utilities ───────────────────────────────────────────── */
+@layer utilities {
+  .no-drag {
+    -webkit-app-region: no-drag;
+  }
+  .drag {
+    -webkit-app-region: drag;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ─── Animations ──────────────────────────────────────────── */
+@keyframes orb-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ring-spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes particles {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-60px) scale(0); opacity: 0; }
+}
+
+.orb-pulse { animation: orb-pulse 3s ease-in-out infinite; }
+.ring-spin { animation: ring-spin 8s linear infinite; }
+.ring-spin-reverse { animation: ring-spin-reverse 12s linear infinite; }
